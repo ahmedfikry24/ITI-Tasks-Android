@@ -26,6 +26,7 @@
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/mobile_edit_text"
+        android:inputType="number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -56,6 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/message_edit_text">
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/close_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -65,6 +67,7 @@
             android:textColor="@color/white" />
 
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/next_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
