@@ -2,7 +2,6 @@ package com.example.iti_tasks_android
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -11,15 +10,14 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class MainActivity : AppCompatActivity() {
-    private lateinit var phoneNum: AppCompatEditText
-    private lateinit var message: AppCompatEditText
+class MainActivity2 : AppCompatActivity() {
+    private lateinit var phoneNum: TextView
+    private lateinit var message: TextView
     private lateinit var closeButton: AppCompatButton
-    private lateinit var nextButton: AppCompatButton
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_main2)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -29,22 +27,19 @@ class MainActivity : AppCompatActivity() {
         initOnClickListeners()
     }
 
+
     private fun initViews() {
-        phoneNum = findViewById(R.id.mobile_edit_text)
-        message = findViewById(R.id.message_edit_text)
+        phoneNum = findViewById(R.id.num)
+        message = findViewById(R.id.message_value)
         closeButton = findViewById(R.id.close_button)
-        nextButton = findViewById(R.id.next_button)
+        val intent = intent
+        phoneNum.text = intent.getStringExtra("phone")
+        message.text = intent.getStringExtra("message")
     }
 
     private fun initOnClickListeners() {
         closeButton.setOnClickListener {
 
-        }
-        nextButton.setOnClickListener {
-            val intent = Intent(this, MainActivity2::class.java)
-            intent.putExtra("phone", phoneNum.text.toString())
-            intent.putExtra("message", message.text.toString())
-            startActivity(intent)
         }
     }
 }
