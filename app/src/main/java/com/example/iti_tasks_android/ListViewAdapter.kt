@@ -1,28 +1,35 @@
 package com.example.iti_tasks_android
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.BaseAdapter
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.Adapter
 
-class ListViewAdapter(
-    private val context: Context,
-    private val list: List<ItemInfo>
-) : BaseAdapter() {
-    private val inflater: LayoutInflater = LayoutInflater.from(context)
+class RecyclerAdapter(private val list: List<ItemInfo>) :
+    Adapter<RecyclerAdapter.ItemViewHolder>() {
 
-    override fun getCount() = list.size
-    override fun getItem(position: Int) = list[position]
-
-    override fun getItemId(position: Int) = list.size.toLong()
-
-    override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
-        val view =
-            convertView ?: inflater.inflate(android.R.layout.simple_list_item_1, parent, false)
-        val item = view.findViewById<TextView>(android.R.id.text1)
-        item.text = list[position].day
-        return view
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ItemViewHolder {
+        return ItemViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.android_item, parent, false),
+        )
     }
+
+    override fun getItemCount() = list.size
+
+    override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
+        val item = list[position]
+        holder.apply {
+            title.text = "item ${position.inc()}: ${item.title}"
+            text.text = item.text
+        }
+    }
+
+    class ItemViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val title: TextView = view.findViewById(R.id.item_title)
+        val text: TextView = view.findViewById(R.id.item_text)
+    }
+
 }
