@@ -1,10 +1,12 @@
 package com.example.iti_tasks_android
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.fragment.app.Fragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -17,9 +19,11 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        if (savedInstanceState == null) {
+        val button = findViewById<Button>(R.id.button)
+        button.setOnClickListener {
             supportFragmentManager.beginTransaction().add(R.id.dynamic_fragment, DynamicFragment())
                 .commit()
         }
     }
+
 }
