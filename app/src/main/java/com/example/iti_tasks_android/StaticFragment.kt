@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
-const val TAG = "staticFragment"
+private const val TAG = "staticFragment"
 
 class StaticFragment : Fragment() {
 
