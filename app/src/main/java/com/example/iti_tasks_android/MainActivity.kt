@@ -8,7 +8,6 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var recycler: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -18,22 +17,5 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        recycler = findViewById(R.id.main_recycler)
-        val items = listOf(
-            ItemInfo("android", "hello android world"),
-            ItemInfo("android", "hello android world"),
-            ItemInfo("android", "hello android world"),
-            ItemInfo("android", "hello android world"),
-            ItemInfo("android", "hello android world"),
-            ItemInfo("android", "hello android world"),
-            ItemInfo("android", "hello android world"),
-            ItemInfo("android", "hello android world"),
-            ItemInfo("android", "hello android world"),
-            ItemInfo("android", "hello android world"),
-            ItemInfo("android", "hello android world"),
-        )
-
-        val adapter = RecyclerAdapter(items)
-        recycler.adapter = adapter
     }
 }
