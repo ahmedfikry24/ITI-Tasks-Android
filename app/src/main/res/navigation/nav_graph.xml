@@ -9,7 +9,7 @@
         android:id="@+id/homeFragment"
         android:name="com.example.iti_tasks_android.ui.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_galleryFragment"
             app:destination="@id/galleryFragment" />
@@ -18,9 +18,6 @@
         android:id="@+id/galleryFragment"
         android:name="com.example.iti_tasks_android.ui.GalleryFragment"
         android:label="fragment_gallery"
-        tools:layout="@layout/fragment_gallery" >
-        <argument
-            android:name="text"
-            app:argType="string" />
-    </fragment>
+        tools:layout="@layout/fragment_gallery" />
+
 </navigation>

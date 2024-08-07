@@ -22,4 +22,10 @@
     <string name="gallery">Gallery</string>
     <string name="slideshow">Slideshow</string>
     <string name="go_to_gallery">go to gallery</string>
+    <string name="phone_number">phone number</string>
+    <string name="message">message</string>
+    <string name="next">next</string>
+    <string name="phone">phone:</string>
+    <string name="message_">message:</string>
+    <string name="get_values">get values</string>
 </resources>
