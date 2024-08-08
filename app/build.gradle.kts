@@ -49,4 +49,16 @@ dependencies {
 
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
+
+    // lifecycle
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
+    implementation(libs.androidx.lifecycle.livedata.ktx)
+
+    // retrofit
+    implementation(libs.retrofit)
+    implementation(libs.square.converter.gson)
+    implementation(libs.okhttp3)
+    implementation(libs.okhttp3.interceptor)
+
+    implementation(libs.glide)
 }
