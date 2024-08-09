@@ -11,13 +11,8 @@ import com.bumptech.glide.Glide
 import com.example.iti_tasks_android.R
 import com.example.iti_tasks_android.ui.products.view_model.ProductsState
 
-interface ItemListener {
-    fun onClick(title: String, description: String, url: String)
-}
-
 class ProductsAdapter(private var list: List<ProductsState>) :
     Adapter<ProductsAdapter.ProductViewHolder>() {
-    var onItemClick: ItemListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         return ProductViewHolder(
@@ -35,9 +30,7 @@ class ProductsAdapter(private var list: List<ProductsState>) :
             price.text = item.price.toString()
             image.loadImage(item.imageUrl)
         }
-        holder.itemView.setOnClickListener {
-            onItemClick?.onClick(item.title, item.description, item.imageUrl)
-        }
+        holder.itemView.setOnClickListener { item.onItemClick() }
 
     }
 
