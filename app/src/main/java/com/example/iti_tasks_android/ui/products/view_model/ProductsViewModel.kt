@@ -3,7 +3,7 @@ package com.example.iti_tasks_android.ui.products.view_model
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.iti_tasks_android.data.rest_full.RetrofitManager
+import com.example.iti_tasks_android.data.remote.RetrofitManager
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

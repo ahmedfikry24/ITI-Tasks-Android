@@ -1,4 +1,4 @@
-package com.example.iti_tasks_android.data.rest_full
+package com.example.iti_tasks_android.data.remote
 
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit

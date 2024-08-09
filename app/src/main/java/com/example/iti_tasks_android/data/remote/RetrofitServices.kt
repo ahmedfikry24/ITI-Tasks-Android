@@ -1,4 +1,4 @@
-package com.example.iti_tasks_android.data.rest_full
+package com.example.iti_tasks_android.data.remote
 
 import com.example.iti_tasks_android.data.models.ProductsDto
 import retrofit2.Response
