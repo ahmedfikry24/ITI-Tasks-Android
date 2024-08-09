@@ -1,21 +1,26 @@
 package com.example.iti_tasks_android.ui.products
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.iti_tasks_android.R
+import com.example.iti_tasks_android.data.RepositoryImpl
+import com.example.iti_tasks_android.data.remote.RetrofitManager
+import com.example.iti_tasks_android.data.source.RemoteDateSourceImpl
+import com.example.iti_tasks_android.ui.products.view_model.ProductsEvents
 import com.example.iti_tasks_android.ui.products.view_model.ProductsViewModel
 
 
 class ProductsFragment : Fragment() {
-    private val viewMode: ProductsViewModel by viewModels()
+    private val remoteDateSource by lazy { RemoteDateSourceImpl(RetrofitManager.service) }
+    private val repository by lazy { RepositoryImpl(remoteDateSource) }
+    private val viewMode by lazy { ProductsViewModel(repository) }
     private lateinit var progressBar: ProgressBar
     private lateinit var recycler: RecyclerView
     private lateinit var adapter: ProductsAdapter
@@ -42,23 +47,31 @@ class ProductsFragment : Fragment() {
         viewMode.state.observe(viewLifecycleOwner) {
             adapter.updateItems(it)
         }
+        viewMode.events.observe(viewLifecycleOwner) { event ->
+            when (event) {
+                ProductsEvents.Idle -> Unit
+                is ProductsEvents.NavigateToProductDetails -> {
+                    val direction =
+                        ProductsFragmentDirections.actionProductsFragmentToProductDetailsFragment(
+                            title = event.title,
+                            description = event.description,
+                            url = event.imageUrl
+                        )
+                    findNavController().navigate(direction)
+                }
+            }
+        }
     }
 
+    override fun onPause() {
+        super.onPause()
+        viewMode.events.postValue(ProductsEvents.Idle)
+    }
 
     private fun initViews(view: View) {
         progressBar = view.findViewById(R.id.progress_bar)
         recycler = view.findViewById(R.id.recycler)
         adapter = ProductsAdapter(listOf())
-        adapter.onItemClick = object : ItemListener {
-            override fun onClick(title: String, description: String, url: String) {
-                val direction =  ProductsFragmentDirections.actionProductsFragmentToProductDetailsFragment(
-                    title = title,
-                    description = description,
-                    url = url
-                )
-               findNavController().navigate(direction)
-            }
-        }
         recycler.adapter = adapter
     }
 }
