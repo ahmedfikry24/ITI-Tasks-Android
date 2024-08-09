@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.iti_tasks_android.R
@@ -15,12 +16,13 @@ import com.example.iti_tasks_android.data.remote.RetrofitManager
 import com.example.iti_tasks_android.data.source.RemoteDateSourceImpl
 import com.example.iti_tasks_android.ui.products.view_model.ProductsEvents
 import com.example.iti_tasks_android.ui.products.view_model.ProductsViewModel
+import com.example.iti_tasks_android.ui.products.view_model.ProductsViewModelFactory
 
 
 class ProductsFragment : Fragment() {
     private val remoteDateSource by lazy { RemoteDateSourceImpl(RetrofitManager.service) }
     private val repository by lazy { RepositoryImpl(remoteDateSource) }
-    private val viewMode by lazy { ProductsViewModel(repository) }
+    private val viewMode by viewModels<ProductsViewModel> { ProductsViewModelFactory(repository) }
     private lateinit var progressBar: ProgressBar
     private lateinit var recycler: RecyclerView
     private lateinit var adapter: ProductsAdapter

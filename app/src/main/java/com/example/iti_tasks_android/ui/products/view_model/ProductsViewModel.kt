@@ -2,10 +2,18 @@ package com.example.iti_tasks_android.ui.products.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.CreationExtras
 import com.example.iti_tasks_android.data.RepositoryImpl
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+
+class ProductsViewModelFactory(private val repository: RepositoryImpl) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
+        return modelClass.getConstructor(RepositoryImpl::class.java).newInstance(repository)
+    }
+}
 
 class ProductsViewModel(
     private val repository: RepositoryImpl
