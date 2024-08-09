@@ -2,7 +2,7 @@ package com.example.iti_tasks_android.data.models
 
 import com.google.gson.annotations.SerializedName
 
-data class ProductsDto(
+data class ProductDto(
 
     @field:SerializedName("image")
     val image: String? = null,
