@@ -16,6 +16,7 @@ retrofit = "2.11.0"
 okhttp = "4.12.0"
 glide = "4.15.1"
 roomRuntime = "2.6.1"
+ksp = "2.0.0-1.0.24"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,4 +46,5 @@ android-application = { id = "com.android.application", version.ref = "agp" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 navSafeArgs = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigationFragmentKtxVersion" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+kotlin-ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
 
