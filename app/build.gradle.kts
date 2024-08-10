@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
     alias(libs.plugins.navSafeArgs)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.kotlin.ksp)
 }
 
 android {
@@ -61,4 +63,10 @@ dependencies {
     implementation(libs.okhttp3.interceptor)
 
     implementation(libs.glide)
+
+    // room
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
+
 }

@@ -11,8 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.iti_tasks_android.R
-import com.example.iti_tasks_android.data.RepositoryImpl
+import com.example.iti_tasks_android.data.local.RoomManager
+import com.example.iti_tasks_android.data.repository.RepositoryImpl
 import com.example.iti_tasks_android.data.remote.RetrofitManager
+import com.example.iti_tasks_android.data.source.LocalDataSourceImpl
 import com.example.iti_tasks_android.data.source.RemoteDateSourceImpl
 import com.example.iti_tasks_android.ui.products.view_model.ProductsEvents
 import com.example.iti_tasks_android.ui.products.view_model.ProductsViewModel
@@ -20,8 +22,10 @@ import com.example.iti_tasks_android.ui.products.view_model.ProductsViewModelFac
 
 
 class ProductsFragment : Fragment() {
+    private val roomManager by lazy { RoomManager.getInit(requireContext()) }
+    private val localDataSource by lazy { LocalDataSourceImpl(roomManager) }
     private val remoteDateSource by lazy { RemoteDateSourceImpl(RetrofitManager.service) }
-    private val repository by lazy { RepositoryImpl(remoteDateSource) }
+    private val repository by lazy { RepositoryImpl(remoteDateSource, localDataSource) }
     private val viewMode by viewModels<ProductsViewModel> { ProductsViewModelFactory(repository) }
     private lateinit var progressBar: ProgressBar
     private lateinit var recycler: RecyclerView
